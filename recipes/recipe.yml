@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
 name: xnet-inc-os
@@ -6,7 +5,7 @@ name: xnet-inc-os
 description: This is an OS image for XNet Inc. developers, customized by Joshua S. Doucette.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
+base-image: ghcr.io/ublue-os/vauxite-main
 image-version: 43 # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
@@ -34,6 +33,7 @@ modules:
         - starship
         - gnome-boxes
         - virt-manager
+        - distrobox
         - google-chrome-unstable
         - git
         - gh
@@ -41,11 +41,7 @@ modules:
         - google-cloud-cli
         - codium
         - nodejs
-        - '@xfce-desktop-environment'
-        - lightdm
-        - lightdm-gtk
         - engrampa
-        - xfce4-clipman-plugin
         - system-config-printer
         - gutenprint
         - evince
@@ -70,51 +66,15 @@ modules:
         - selinux-policy-devel
         - policycoreutils-devel
         - mcstrans
-        - make
-        - gcc
-        - autoconf
-        - automake
-        - xfce4-screenshooter
-        - xfce4-taskmanager
         - dejavu-sans-fonts
         - dejavu-serif-fonts
-        - thunar-archive-plugin
         - dnf-plugins-core
         - tigervnc
         - wireshark
         - libreoffice
         - vlc
-        - nmap
-        - masscan
-        - hping3
-        - john
-        - hashcat
-        - binwalk
-        - foremost
-        - testdisk
-        - radare2
-        - aircrack-ng
-        - kismet
-        - proxychains-ng
-        - tor
         - strace
         - ltrace
-        - wipe
-        - extundelete
-        - go
-        - rust
-        - java-latest-openjdk
-        - php
-        - ruby
-        - gcc-c++
-        - nasm
-        - yasm
-        - gtk3-devel
-        - clang
-        - libxcb-devel
-        - libxdo-devel
-        - libXfixes-devel
-        - cmake
         - pam-devel
 
   - type: script
@@ -129,20 +89,11 @@ modules:
         # Install Gemini CLI
         npm install -g @google/gemini-cli
 
-        # Disable GDM and enable LightDM
-        systemctl disable gdm.service || true
-        systemctl enable lightdm.service
+        # Enable CUPS service (do not start)
+        systemctl enable cups
 
-        # Set XFCE as the default session in LightDM
-        mkdir -p /etc/lightdm/lightdm.conf.d
-        echo "[Seat:*]" > /etc/lightdm/lightdm.conf.d/50-xnet-inc-os.conf
-        echo "user-session=xfce" >> /etc/lightdm/lightdm.conf.d/50-xnet-inc-os.conf
-
-        # Enable CUPS service
-        systemctl enable cups || true
-
-        # Enable Cockpit socket
-        systemctl enable cockpit.socket || true
+        # Enable Cockpit socket (do not start)
+        systemctl enable cockpit.socket
 
   - type: default-flatpaks
     configurations:
