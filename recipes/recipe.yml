@@ -84,8 +84,6 @@ modules:
 
   # 4. Justfile (Automates your Distrobox setup)
   - type: justfiles
-    files:
-      - just/setup-dev.just
 
   # 5. Flatpaks (Sandboxed Apps)
   - type: default-flatpaks
