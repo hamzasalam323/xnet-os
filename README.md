@@ -1,8 +1,8 @@
-# xnet-os &nbsp; [![bluebuild build badge](https://github.com/xnet-admin-1/xnet-os/actions/workflows/build.yml/badge.svg)](https://github.com/xnet-admin-1/xnet-os/actions/workflows/build.yml)
+# xnet-inc-os &nbsp; [![bluebuild build badge](https://github.com/xnet-admin-1/xnet-os/actions/workflows/build.yml/badge.svg)](https://github.com/xnet-admin-1/xnet-os/actions/workflows/build.yml)
+
+This is an OS image for XNet Inc. developers, customized by Joshua S. Doucette.
 
 See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
-
-After setup, it is recommended you update this README to describe your custom image.
 
 ## Installation
 
@@ -13,7 +13,7 @@ To rebase an existing atomic Fedora installation to the latest build:
 
 - First rebase to the unsigned image, to get the proper signing keys and policies installed:
   ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/xnet-admin-1/xnet-os:latest
+  rpm-ostree rebase ostree-unverified-registry:ghcr.io/joshua-dou/xnet-inc-os:latest
   ```
 - Reboot to complete the rebase:
   ```
@@ -21,7 +21,7 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 - Then rebase to the signed image, like so:
   ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/xnet-admin-1/xnet-os:latest
+  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/joshua-dou/xnet-inc-os:latest
   ```
 - Reboot again to complete the installation
   ```
@@ -39,5 +39,5 @@ If build on Fedora Atomic, you can generate an offline ISO with the instructions
 These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/xnet-admin-1/xnet-os
+cosign verify --key cosign.pub ghcr.io/joshua-dou/xnet-inc-os
 ```
