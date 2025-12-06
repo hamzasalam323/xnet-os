@@ -84,7 +84,6 @@ modules:
         - nmap
         - masscan
         - hping3
-        - gobuster
         - john
         - hashcat
         - binwalk
@@ -98,10 +97,7 @@ modules:
         - strace
         - ltrace
         - wipe
-        - scalpel
         - extundelete
-        - gstreamer1-plugins-ugly
-        - gstreamer1-plugins-bad
         - go
         - rust
         - java-latest-openjdk
@@ -115,11 +111,7 @@ modules:
         - libxcb-devel
         - libxdo-devel
         - libXfixes-devel
-        - pulseaudio-libs-devel
         - cmake
-        - alsa-lib-devel
-        - gstreamer1-devel
-        - gstreamer1-plugins-base-devel
         - pam-devel
 
   - type: script
