@@ -1,26 +1,26 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: xnet-inc-os
-# description will be included in the image's metadata
-description: This is an OS image for XNet Inc. developers, customized by Joshua S. Doucette.
+description: XNet Inc. Developer OS (Vauxite/XFCE Base). Customized by Joshua S. Doucette.
 
-# the base image to build on top of (FROM) and the version tag to use
+# SWITCHED TO VAUXITE (Native XFCE Image)
+# This prevents conflicts between GNOME and XFCE and saves build time.
 base-image: ghcr.io/ublue-os/vauxite-main
-image-version: 43 # latest is also supported if you want new updates ASAP
+image-version: 43
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
+  # 1. Copy Config Files (Repos, Distrobox config, etc.)
   - type: files
     files:
       - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+        destination: /
 
+  # 2. RPM Packages (Only GUI Apps & System Utilities)
   - type: dnf
     repos:
       copr:
         - atim/starship
       files:
+        # Ensure these exist in your files/system/etc/yum.repos.d/ folder!
         - /etc/yum.repos.d/google-chrome.repo
         - /etc/yum.repos.d/gh-cli.repo
         - /etc/yum.repos.d/google-cloud-sdk.repo
@@ -29,25 +29,22 @@ modules:
         - /etc/yum.repos.d/rpmfusion-nonfree.repo
     install:
       packages:
+        # --- Shell & Core ---
         - micro
         - starship
-        - gnome-boxes
-        - virt-manager
-        - distrobox
-        - google-chrome-unstable
         - git
         - gh
-        - libxcrypt-compat.x86_64
         - google-cloud-cli
+        - zsh
+        
+        # --- GUI Applications ---
+        - google-chrome-unstable
         - codium
-        - nodejs
-        - engrampa
-        - system-config-printer
-        - gutenprint
-        - evince
         - kitty
-        - NetworkManager-tui
-        - gparted
+        - virt-manager
+        - gnome-boxes
+        
+        # --- Cockpit (Web Admin) ---
         - cockpit
         - cockpit-bridge
         - cockpit-doc
@@ -61,40 +58,34 @@ modules:
         - cockpit-machines
         - cockpit-podman
         - cockpit-ostree
+        
+        # --- SE Linux Utilities ---
         - setroubleshoot-server
         - setools-console
-        - selinux-policy-devel
-        - policycoreutils-devel
         - mcstrans
-        - dejavu-sans-fonts
-        - dejavu-serif-fonts
-        - dnf-plugins-core
-        - tigervnc
-        - wireshark
-        - libreoffice
-        - vlc
-        - strace
-        - ltrace
-        - pam-devel
 
+  # 3. System Configuration Scripts
   - type: script
     snippets:
       - |
         #!/usr/bin/env bash
         set -oue pipefail
 
-        # Install antigravity
-        pip install antigravity
-
-        # Install Gemini CLI
+        # Install Gemini CLI (Global NPM is okay for single tools)
         npm install -g @google/gemini-cli
 
-        # Enable CUPS service (do not start)
+        # Enable System Services
+        # (Note: LightDM is already enabled by default in Vauxite!)
         systemctl enable cups
-
-        # Enable Cockpit socket (do not start)
         systemctl enable cockpit.socket
+        systemctl enable libvirtd
 
+  # 4. Justfile (Automates your Distrobox setup)
+  - type: just
+    files:
+      - just/setup-dev.just
+
+  # 5. Flatpaks (Sandboxed Apps)
   - type: default-flatpaks
     configurations:
       - notify: true
@@ -102,4 +93,6 @@ modules:
         install:
           - org.gnome.Loupe
           - com.rustdesk.RustDesk
+          - org.libreoffice.LibreOffice
+          - org.videolan.VLC
       - scope: user
