@@ -22,10 +22,9 @@ modules:
       copr:
         - atim/starship
       files:
-        - /etc/yum.repos.d/google-chrome.repo
-        - /etc/yum.repos.d/gh-cli.repo
-        - /etc/yum.repos.d/google-cloud-sdk.repo
         - /etc/yum.repos.d/vscodium.repo
+        - /etc/yum.repos.d/rpmfusion-free.repo
+        - /etc/yum.repos.d/rpmfusion-nonfree.repo
     install:
       packages:
         - micro
@@ -46,8 +45,6 @@ modules:
         - xfce4-clipman-plugin
         - system-config-printer
         - gutenprint
-        - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm
-        - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-43.noarch.rpm
         - evince
         - kitty
         - NetworkManager-tui
@@ -105,14 +102,12 @@ modules:
         - extundelete
         - gstreamer1-plugins-ugly
         - gstreamer1-plugins-bad
-        - ffmpeg
         - go
         - rust
         - java-latest-openjdk
         - php
         - ruby
         - gcc-c++
-        - wget
         - nasm
         - yasm
         - gtk3-devel
