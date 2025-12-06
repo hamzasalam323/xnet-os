@@ -169,3 +169,10 @@ modules:
         fi
 
   - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        install:
+          - org.gnome.Loupe
+          - com.rustdesk.RustDesk
+      - scope: user
