@@ -153,9 +153,6 @@ modules:
         - java-latest-openjdk
         - php
         - ruby
-    remove:
-      packages:
-        # Firefox related packages were removed earlier. This section remains as a placeholder.
 
   - type: script
     snippets:
