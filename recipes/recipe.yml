@@ -26,48 +26,32 @@ modules:
         - /etc/yum.repos.d/gh-cli.repo
         - /etc/yum.repos.d/google-cloud-sdk.repo
         - /etc/yum.repos.d/vscodium.repo
-        - /etc/yum.repos.d/rustdesk.repo
     install:
       packages:
         - micro
         - starship
-        - nano
         - gnome-boxes
         - virt-manager
-        - distrobox
         - google-chrome-unstable
         - git
         - gh
         - libxcrypt-compat.x86_64
         - google-cloud-cli
         - codium
-        - python3
-        - python3-pip
         - nodejs
         - '@xfce-desktop-environment'
         - lightdm
         - lightdm-gtk
         - engrampa
         - xfce4-clipman-plugin
-        - cups
-        - cups-filters
         - system-config-printer
         - gutenprint
-        - rpmfusion-free-release
-        - rpmfusion-nonfree-release
-        - akmod-nvidia
-        - xorg-x11-drv-nvidia-cuda
+        - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-41.noarch.rpm
+        - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-41.noarch.rpm
         - evince
         - kitty
         - NetworkManager-tui
-        - wireguard-tools
         - gparted
-        - podman
-        - podman-docker
-        - podman-machine
-        - podman-remote
-        - podmansh
-        - slirp4netns
         - cockpit
         - cockpit-bridge
         - cockpit-doc
@@ -86,52 +70,26 @@ modules:
         - selinux-policy-devel
         - policycoreutils-devel
         - mcstrans
-        - selinux-basics
-        - net-tools
-        - traceroute
-        - nmap-ncat
-        - bind-utils
-        - gnome-online-accounts
-        - gnome-keyring
         - make
         - gcc
         - autoconf
         - automake
-        - openssh-clients
         - xfce4-screenshooter
         - xfce4-taskmanager
-        - google-noto-color-emoji-fonts
         - dejavu-sans-fonts
         - dejavu-serif-fonts
-        - dejavu-mono-fonts
-        - zip
-        - unzip
-        - rsync
-        - htop
-        - cryptsetup
-        - lvm2
-        - e2fsprogs
-        - xfsprogs
         - thunar-archive-plugin
         - dnf-plugins-core
-        - rustdesk
-        - sane-backends
-        - simple-scan
         - tigervnc
         - wireshark
-        - htttrack
         - libreoffice
         - vlc
         - nmap
         - masscan
         - hping3
-        - nikto
-        - sqlmap
-        - dirb
         - gobuster
         - john
         - hashcat
-        - crunch
         - binwalk
         - foremost
         - testdisk
@@ -153,6 +111,21 @@ modules:
         - java-latest-openjdk
         - php
         - ruby
+        - gcc-c++
+        - wget
+        - nasm
+        - yasm
+        - gtk3-devel
+        - clang
+        - libxcb-devel
+        - libxdo-devel
+        - libXfixes-devel
+        - pulseaudio-libs-devel
+        - cmake
+        - alsa-lib-devel
+        - gstreamer1-devel
+        - gstreamer1-plugins-base-devel
+        - pam-devel
 
   - type: script
     snippets:
@@ -191,10 +164,6 @@ modules:
             
             # Cockpit
             firewall-cmd --add-service=cockpit --permanent || true
-            
-            # RustDesk
-            firewall-cmd --permanent --add-port=21114-21119/tcp || true
-            firewall-cmd --permanent --add-port=21116/udp || true
             
             firewall-cmd --reload || true
         fi
