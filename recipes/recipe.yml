@@ -83,7 +83,7 @@ modules:
         systemctl enable libvirtd
 
   # 4. Justfile (Automates your Distrobox setup)
-  - type: just
+  - type: justfiles
     files:
       - just/setup-dev.just
 
