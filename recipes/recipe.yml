@@ -4,6 +4,7 @@ description: XNet Inc. Developer OS (Fedora Budgie Atomic Base). Customized by J
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/bazzite-budgie:stable
+image-version: stable
 
 
 # module configuration, executed in order
@@ -18,13 +19,6 @@ modules:
     repos:
       copr:
         - atim/starship
-      files:
-        - /etc/yum.repos.d/google-chrome.repo
-        - /etc/yum.repos.d/gh-cli.repo
-        - /etc/yum.repos.d/google-cloud-sdk.repo
-        - /etc/yum.repos.d/vscodium.repo
-        - /etc/yum.repos.d/rpmfusion-free.repo
-        - /etc/yum.repos.d/rpmfusion-nonfree.repo
     install:
       packages:
         - micro
@@ -39,11 +33,9 @@ modules:
         - google-cloud-cli
         - codium
         - nodejs
-
-
-
         - system-config-printer
         - gutenprint
+        - just
 
   # 3. System Configuration Scripts
   - type: script
@@ -60,9 +52,6 @@ modules:
         systemctl enable cockpit.socket
         systemctl enable libvirtd
 
-  # 4. Justfile (Automates your Distrobox setup)
-  - type: justfiles
-
   # 5. Flatpaks (Sandboxed Apps)
   - type: default-flatpaks
     configurations:
@@ -74,3 +63,5 @@ modules:
           - org.libreoffice.LibreOffice
           - org.videolan.VLC
       - scope: user
+
+  - type: signing # this sets up the proper policy & signing files for signed images to work fully

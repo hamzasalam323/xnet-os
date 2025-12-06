@@ -1,6 +1,6 @@
-[gh-cli]
+[github-cli]
 name=GitHub CLI
 baseurl=https://cli.github.com/packages/rpm
 enabled=1
 gpgcheck=1
-gpgkey=https://cli.github.com/packages/rpm/RPM-GPG-KEY-github-cli
+gpgkey=https://keys.openpgp.org/vks/v1/by-fingerprint/23F3D4EA75716059B53C4B77D755E4E80555941C

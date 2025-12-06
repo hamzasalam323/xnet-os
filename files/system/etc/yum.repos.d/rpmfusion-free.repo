@@ -1,0 +1,6 @@
+[rpmfusion-free]
+name=RPM Fusion for Fedora $releasever - Free
+baseurl=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$releasever.noarch.rpm
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmfusion-free-fedora-$releasever
