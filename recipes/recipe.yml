@@ -3,7 +3,7 @@ name: xnet-inc-os
 description: XNet Inc. Developer OS (Fedora Budgie Atomic Base). Customized by Joshua S. Doucette.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/budgie
+base-image: ghcr.io/ublue-os/bazzite-budgie:stable
 image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
