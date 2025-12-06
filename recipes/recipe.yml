@@ -76,7 +76,7 @@ modules:
         - python3
         - python3-pip
         - nodejs
-        - @xfce-desktop-environment
+        - '@xfce-desktop-environment'
         - lightdm
         - lightdm-gtk
         - engrampa
