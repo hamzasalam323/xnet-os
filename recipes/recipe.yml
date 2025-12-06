@@ -46,8 +46,8 @@ modules:
         - xfce4-clipman-plugin
         - system-config-printer
         - gutenprint
-        - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-41.noarch.rpm
-        - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-41.noarch.rpm
+        - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-rawhide.noarch.rpm
+        - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-rawhide.noarch.rpm
         - evince
         - kitty
         - NetworkManager-tui
