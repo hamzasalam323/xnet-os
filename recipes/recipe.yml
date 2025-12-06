@@ -2,69 +2,50 @@
 name: xnet-inc-os
 description: XNet Inc. Developer OS (Vauxite/XFCE Base). Customized by Joshua S. Doucette.
 
-# SWITCHED TO VAUXITE (Native XFCE Image)
-# This prevents conflicts between GNOME and XFCE and saves build time.
-base-image: ghcr.io/ublue-os/vauxite-main
-image-version: 43
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/ublue-os/silverblue-main
+image-version: latest # latest is also supported if you want new updates ASAP
 
+# module configuration, executed in order
+# you can include multiple instances of the same module
 modules:
-  # 1. Copy Config Files (Repos, Distrobox config, etc.)
   - type: files
     files:
       - source: system
-        destination: /
+        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  # 2. RPM Packages (Only GUI Apps & System Utilities)
   - type: dnf
     repos:
       copr:
         - atim/starship
       files:
-        # Ensure these exist in your files/system/etc/yum.repos.d/ folder!
         - /etc/yum.repos.d/google-chrome.repo
         - /etc/yum.repos.d/gh-cli.repo
         - /etc/yum.repos.d/google-cloud-sdk.repo
         - /etc/yum.repos.d/vscodium.repo
+        - /etc/yum.repos.d/rpmfusion-free.repo
+        - /etc/yum.repos.d/rpmfusion-nonfree.repo
     install:
       packages:
-        # --- RPM Fusion Repos ---
-        - rpmfusion-free-release
-        - rpmfusion-nonfree-release
-        
-        # --- Shell & Core ---
         - micro
         - starship
+        - gnome-boxes
+        - virt-manager
+        - distrobox
+        - google-chrome-unstable
         - git
         - gh
+        - libxcrypt-compat.x86_64
         - google-cloud-cli
-        - zsh
-        
-        # --- GUI Applications ---
-        - google-chrome-unstable
         - codium
-        - kitty
-        - virt-manager
-        - gnome-boxes
-        
-        # --- Cockpit (Web Admin) ---
-        - cockpit
-        - cockpit-bridge
-        - cockpit-doc
-        - cockpit-kdump
-        - cockpit-networkmanager
-        - cockpit-packagekit
-        - cockpit-selinux
-        - cockpit-sosreport
-        - cockpit-storaged
-        - cockpit-system
-        - cockpit-machines
-        - cockpit-podman
-        - cockpit-ostree
-        
-        # --- SE Linux Utilities ---
-        - setroubleshoot-server
-        - setools-console
-        - mcstrans
+        - nodejs
+        - '@xfce-desktop-environment'
+        - lightdm
+        - lightdm-gtk
+        - engrampa
+        - xfce4-clipman-plugin
+        - system-config-printer
+        - gutenprint
 
   # 3. System Configuration Scripts
   - type: script
