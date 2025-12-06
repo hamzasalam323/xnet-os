@@ -1,9 +1,9 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: xnet-inc-os
-description: XNet Inc. Developer OS (Vauxite/XFCE Base). Customized by Joshua S. Doucette.
+description: XNet Inc. Developer OS (Fedora Budgie Atomic Base). Customized by Joshua S. Doucette.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
+base-image: ghcr.io/ublue-os/budgie
 image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
@@ -39,11 +39,9 @@ modules:
         - google-cloud-cli
         - codium
         - nodejs
-        - '@xfce-desktop-environment'
-        - lightdm
-        - lightdm-gtk
-        - engrampa
-        - xfce4-clipman-plugin
+
+
+
         - system-config-printer
         - gutenprint
 
@@ -58,7 +56,6 @@ modules:
         npm install -g @google/gemini-cli
 
         # Enable System Services
-        # (Note: LightDM is already enabled by default in Vauxite!)
         systemctl enable cups
         systemctl enable cockpit.socket
         systemctl enable libvirtd
