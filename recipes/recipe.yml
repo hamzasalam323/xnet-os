@@ -25,10 +25,12 @@ modules:
         - /etc/yum.repos.d/gh-cli.repo
         - /etc/yum.repos.d/google-cloud-sdk.repo
         - /etc/yum.repos.d/vscodium.repo
-        - /etc/yum.repos.d/rpmfusion-free.repo
-        - /etc/yum.repos.d/rpmfusion-nonfree.repo
     install:
       packages:
+        # --- RPM Fusion Repos ---
+        - rpmfusion-free-release
+        - rpmfusion-nonfree-release
+        
         # --- Shell & Core ---
         - micro
         - starship
