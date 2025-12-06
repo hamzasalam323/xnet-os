@@ -22,6 +22,9 @@ modules:
       copr:
         - atim/starship
       files:
+        - /etc/yum.repos.d/google-chrome.repo
+        - /etc/yum.repos.d/gh-cli.repo
+        - /etc/yum.repos.d/google-cloud-sdk.repo
         - /etc/yum.repos.d/vscodium.repo
         - /etc/yum.repos.d/rpmfusion-free.repo
         - /etc/yum.repos.d/rpmfusion-nonfree.repo
@@ -127,7 +130,7 @@ modules:
         npm install -g @google/gemini-cli
 
         # Disable GDM and enable LightDM
-        systemctl disable gdm.service || true # Use || true in case GDM isn't active
+        systemctl disable gdm.service || true
         systemctl enable lightdm.service
 
         # Set XFCE as the default session in LightDM
@@ -135,25 +138,11 @@ modules:
         echo "[Seat:*]" > /etc/lightdm/lightdm.conf.d/50-xnet-inc-os.conf
         echo "user-session=xfce" >> /etc/lightdm/lightdm.conf.d/50-xnet-inc-os.conf
 
-        # Enable and start CUPS service
+        # Enable CUPS service
         systemctl enable cups || true
-        systemctl start cups || true
 
-        # Enable and start Cockpit socket
-        systemctl enable --now cockpit.socket || true
-
-        # Configure firewall
-        if command -v firewall-cmd &> /dev/null
-        then
-            # CUPS
-            firewall-cmd --add-service=ipp --permanent || true
-            firewall-cmd --add-service=ipp-client --permanent || true
-            
-            # Cockpit
-            firewall-cmd --add-service=cockpit --permanent || true
-            
-            firewall-cmd --reload || true
-        fi
+        # Enable Cockpit socket
+        systemctl enable cockpit.socket || true
 
   - type: default-flatpaks
     configurations:
