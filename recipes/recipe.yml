@@ -163,65 +163,42 @@ modules:
         #!/usr/bin/env bash
         set -oue pipefail
 
+        # Install antigravity
         pip install antigravity
 
-      - |
-        #!/usr/bin/env bash
-        set -oue pipefail
-
+        # Install Gemini CLI
         npm install -g @google/gemini-cli
-
-      - |
-        #!/usr/bin/env bash
-        set -oue pipefail
 
         # Disable GDM and enable LightDM
         systemctl disable gdm.service || true # Use || true in case GDM isn't active
         systemctl enable lightdm.service
 
         # Set XFCE as the default session in LightDM
+        mkdir -p /etc/lightdm/lightdm.conf.d
         echo "[Seat:*]" > /etc/lightdm/lightdm.conf.d/50-xnet-inc-os.conf
         echo "user-session=xfce" >> /etc/lightdm/lightdm.conf.d/50-xnet-inc-os.conf
-
-      - |
-        #!/usr/bin/env bash
-        set -oue pipefail
 
         # Enable and start CUPS service
         systemctl enable cups || true
         systemctl start cups || true
 
-        # Configure firewall for CUPS
-        if command -v firewall-cmd &> /dev/null
-        then
-            firewall-cmd --add-service=ipp --permanent || true
-            firewall-cmd --add-service=ipp-client --permanent || true
-            firewall-cmd --reload || true
-        fi
-
-      - |
-        #!/usr/bin/env bash
-        set -oue pipefail
-
         # Enable and start Cockpit socket
         systemctl enable --now cockpit.socket || true
 
-        # Configure firewall for Cockpit
+        # Configure firewall
         if command -v firewall-cmd &> /dev/null
         then
+            # CUPS
+            firewall-cmd --add-service=ipp --permanent || true
+            firewall-cmd --add-service=ipp-client --permanent || true
+            
+            # Cockpit
             firewall-cmd --add-service=cockpit --permanent || true
-            firewall-cmd --reload || true
-        fi
-
-      - |
-        #!/usr/bin/env bash
-        set -oue pipefail
-
-        # Configure firewall for RustDesk
-        if command -v firewall-cmd &> /dev/null
-        then
+            
+            # RustDesk
             firewall-cmd --permanent --add-port=21114-21119/tcp || true
             firewall-cmd --permanent --add-port=21116/udp || true
+            
             firewall-cmd --reload || true
         fi
 
